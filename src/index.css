@@ -1,3 +1,27 @@
 body {
   margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+ul,
+li {
+  list-style: none;
+  padding-inline-start: 0px;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
 }
