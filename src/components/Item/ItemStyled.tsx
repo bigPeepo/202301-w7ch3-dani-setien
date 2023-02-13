@@ -16,8 +16,8 @@ const ItemStyled = styled.li`
       padding-left: 2rem;
     }
     &__is-done {
-      padding: 2rem;
       padding-right: 3rem;
+      font-size: 32px;
     }
   }
 `;
