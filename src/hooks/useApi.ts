@@ -1,10 +1,14 @@
 import { useCallback } from "react";
-import { ToDos } from "../data/types";
-import { loaToDosActionCreator } from "../store/features/toDos/toDosSlice";
+import { ToDo, ToDos } from "../data/types";
+import {
+  loaToDosActionCreator,
+  toggleIsDoneActionCreator,
+} from "../store/features/toDos/toDosSlice";
 import { useAppDispatch } from "../store/hooks";
 
 const useApi = () => {
-  const apiUrl = process.env.REACT_APP_URL_API!;
+  const apiUrl =
+    "https://202301-w6ch1-dani-setien-backend-second.onrender.com/todoes";
   const dispatch = useAppDispatch();
 
   const loadToDos = useCallback(async () => {
@@ -17,7 +21,11 @@ const useApi = () => {
     } catch (error) {}
   }, [apiUrl, dispatch]);
 
-  return { loadToDos };
+  const toggleIsDone = (todo: ToDo) => {
+    dispatch(toggleIsDoneActionCreator(todo));
+  };
+
+  return { loadToDos, toggleIsDone };
 };
 
 export default useApi;

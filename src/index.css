@@ -1,3 +1,5 @@
+@import url("../node_modules/@fontsource/poppins/index.css");
+
 body {
   margin: 0;
   display: flex;
@@ -12,7 +14,7 @@ body {
 }
 
 html {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 ul,

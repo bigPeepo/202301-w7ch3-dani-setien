@@ -1,17 +1,12 @@
-import { useEffect } from "react";
 import "./App.css";
-import useApi from "./hooks/useApi";
+import ItemList from "./components/Item/ItemList/ItemList";
 
 const App = (): JSX.Element => {
-  const { loadToDos } = useApi();
-
-  useEffect(() => {
-    (async () => {
-      await loadToDos();
-    })();
-  }, [loadToDos]);
-
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <ItemList />
+    </div>
+  );
 };
 
 export default App;
