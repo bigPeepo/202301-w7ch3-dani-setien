@@ -17,11 +17,14 @@ const ItemList = (): JSX.Element => {
   }, [loadToDos]);
 
   return (
-    <ul className="to-do-list">
-      {list.map((item) => (
-        <Item todo={item} />
-      ))}
-    </ul>
+    <>
+      <h1>To do list</h1>
+      <ul className="to-do-list">
+        {list.map((item, position) => (
+          <Item todo={item} position={position} />
+        ))}
+      </ul>
+    </>
   );
 };
 

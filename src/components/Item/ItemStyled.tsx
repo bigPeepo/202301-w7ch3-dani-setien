@@ -5,13 +5,19 @@ const ItemStyled = styled.li`
   width: 100%;
   height: 3rem;
   justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  height: 3rem;
 
   .to-do {
     &__name {
-      padding: 2rem;
+      width: 80vw;
+      text-align: left;
+      padding-left: 2rem;
     }
     &__is-done {
       padding: 2rem;
+      padding-right: 3rem;
     }
   }
 `;
