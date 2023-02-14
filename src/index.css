@@ -35,3 +35,8 @@ i {
 h1 {
   padding: 1rem;
 }
+
+button {
+  background-color: inherit;
+  border: 0;
+}

@@ -11,9 +11,7 @@ const ItemList = (): JSX.Element => {
   });
 
   useEffect(() => {
-    (async () => {
-      await loadToDos();
-    })();
+    loadToDos();
   }, [loadToDos]);
 
   return (
@@ -21,7 +19,11 @@ const ItemList = (): JSX.Element => {
       <h1>To do list</h1>
       <ul className="to-do-list">
         {list.map((item, position) => (
-          <Item todo={item} position={position} />
+          <Item
+            todo={item}
+            position={position}
+            key={Math.floor(Math.random() * 999999)}
+          />
         ))}
       </ul>
     </>

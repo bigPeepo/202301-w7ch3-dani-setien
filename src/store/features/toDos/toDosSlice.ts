@@ -7,17 +7,16 @@ const toDosSlice = createSlice({
   name: "toDos",
   initialState: [] as ToDos,
   reducers: {
-    loadToDos: (state: ToDos, action: PayloadAction<ToDos>) =>
-      (state = [...action.payload]),
-    toggleIsDone: (state: ToDos, action: PayloadAction<ToDo>) => {
-      state.map((item) =>
+    loadToDos: (currentItems, action: PayloadAction<ToDos>) =>
+      (currentItems = [...action.payload]),
+    removeToDo: (currentItems, action: PayloadAction<number>) =>
+      currentItems.filter((item) => item.id !== action.payload),
+    toggleIsDone: (currentItems, action: PayloadAction<ToDo>) => {
+      currentItems.map((item) =>
         item.id === action.payload.id
           ? (item.isDone = !item.isDone)
           : item.isDone
       );
-    },
-    deleteToDo: (state: ToDos, action: PayloadAction<number>) => {
-      state.filter((item) => item.id !== action.payload);
     },
   },
 });
@@ -27,5 +26,5 @@ export default toDosSlice;
 export const {
   loadToDos: loaToDosActionCreator,
   toggleIsDone: toggleIsDoneActionCreator,
-  deleteToDo: deleteToDoActionCreator,
+  removeToDo: removeToDosActionCreator,
 } = toDosSlice.actions;
