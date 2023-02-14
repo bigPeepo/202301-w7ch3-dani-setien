@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { ToDo, ToDos } from "../data/types";
 import {
+  addToDoActionCreator,
   loaToDosActionCreator,
   removeToDosActionCreator,
   toggleIsDoneActionCreator,
@@ -55,7 +56,29 @@ const useApi = () => {
     [apiUrl, dispatch]
   );
 
-  return { loadToDos, toggleIsDone, deleteToDos };
+  const addToDo = async (event: any, todo: ToDo) => {
+    event.preventDefault();
+
+    try {
+      await fetch(apiUrl, {
+        method: "POST",
+        body: JSON.stringify({
+          id: todo.id,
+          name: todo.name,
+          isDone: todo.isDone,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+    } catch (error) {
+      return (error as Error).message;
+    }
+
+    dispatch(addToDoActionCreator(todo));
+  };
+
+  return { loadToDos, toggleIsDone, deleteToDos, addToDo };
 };
 
 export default useApi;

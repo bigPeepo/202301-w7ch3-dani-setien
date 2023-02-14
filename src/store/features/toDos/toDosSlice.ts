@@ -9,8 +9,15 @@ const toDosSlice = createSlice({
   reducers: {
     loadToDos: (currentItems, action: PayloadAction<ToDos>) =>
       (currentItems = [...action.payload]),
+
     removeToDo: (currentItems, action: PayloadAction<number>) =>
-      currentItems.filter((item) => item.id !== action.payload),
+      currentItems
+        .filter((item) => item.id !== action.payload)
+        .map((item, position) => ({
+          ...item,
+          id: position,
+        })),
+
     toggleIsDone: (currentItems, action: PayloadAction<ToDo>) => {
       currentItems.map((item) =>
         item.id === action.payload.id
@@ -18,6 +25,11 @@ const toDosSlice = createSlice({
           : item.isDone
       );
     },
+
+    addToDo: (currentItems, action: PayloadAction<ToDo>) => [
+      ...currentItems,
+      action.payload,
+    ],
   },
 });
 
@@ -27,4 +39,5 @@ export const {
   loadToDos: loaToDosActionCreator,
   toggleIsDone: toggleIsDoneActionCreator,
   removeToDo: removeToDosActionCreator,
+  addToDo: addToDoActionCreator,
 } = toDosSlice.actions;

@@ -1,10 +1,12 @@
 import "./App.css";
-import ItemList from "./components/Item/ItemList/ItemList";
+import Form from "./components/Form/Form";
+import ItemList from "./components/ItemList/ItemList";
 
 const App = (): JSX.Element => {
   return (
     <div className="App">
       <ItemList />
+      <Form />
     </div>
   );
 };
