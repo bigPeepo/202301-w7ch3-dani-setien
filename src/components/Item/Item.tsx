@@ -8,14 +8,16 @@ interface ItemProps {
 }
 
 const Item = ({ todo, position }: ItemProps): JSX.Element => {
-  const { toggleIsDone } = useApi();
-
+  const { toggleIsDone, deleteToDos } = useApi();
   return (
-    <ItemStyled className={`to-do ${position % 2 === 1 ? "odd" : "even"}`}>
+    <ItemStyled className={`to-do ${position % 2 === 1 && "odd"}`}>
       <span className="to-do__name">{todo.name}</span>
-      <i className="to-do__is-done" onClick={() => toggleIsDone(todo)}>
-        {todo.isDone ? "☑" : "🗹"}
-      </i>
+      <button className="to-do__is-done" onClick={() => toggleIsDone(todo)}>
+        {todo.isDone ? "✅" : "☑️"}
+      </button>
+      <button className="to-do__delete" onClick={() => deleteToDos(todo.id)}>
+        🗑️
+      </button>
     </ItemStyled>
   );
 };
