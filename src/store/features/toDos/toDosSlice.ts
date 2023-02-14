@@ -18,6 +18,10 @@ const toDosSlice = createSlice({
           : item.isDone
       );
     },
+    addToDo: (currentItems, action: PayloadAction<ToDo>) => [
+      ...currentItems,
+      action.payload,
+    ],
   },
 });
 
@@ -27,4 +31,5 @@ export const {
   loadToDos: loaToDosActionCreator,
   toggleIsDone: toggleIsDoneActionCreator,
   removeToDo: removeToDosActionCreator,
+  addToDo: addToDoActionCreator,
 } = toDosSlice.actions;

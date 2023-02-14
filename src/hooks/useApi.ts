@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { ToDo, ToDos } from "../data/types";
 import {
+  addToDoActionCreator,
   loaToDosActionCreator,
   removeToDosActionCreator,
   toggleIsDoneActionCreator,
@@ -55,7 +56,13 @@ const useApi = () => {
     [apiUrl, dispatch]
   );
 
-  return { loadToDos, toggleIsDone, deleteToDos };
+  const addToDo = (event: any, todo: ToDo) => {
+    event.preventDefault();
+
+    dispatch(addToDoActionCreator(todo));
+  };
+
+  return { loadToDos, toggleIsDone, deleteToDos, addToDo };
 };
 
 export default useApi;

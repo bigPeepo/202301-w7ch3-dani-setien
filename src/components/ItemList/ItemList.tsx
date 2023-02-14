@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import useApi from "../../../hooks/useApi";
-import { useAppSelector } from "../../../store/hooks";
-import Item from "../Item";
+import useApi from "../../hooks/useApi";
+import { useAppSelector } from "../../store/hooks";
+import Item from "../Item/Item";
 
 const ItemList = (): JSX.Element => {
   const { loadToDos } = useApi();
