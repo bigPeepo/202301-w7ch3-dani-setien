@@ -19,7 +19,7 @@ const FormStyled = styled.form`
 
   button {
     font-size: 20px;
-    padding: 1rem;
+    padding: 0.6rem;
     margin: 0.7rem;
     background-color: #e7eef5;
     border-radius: 12px;
