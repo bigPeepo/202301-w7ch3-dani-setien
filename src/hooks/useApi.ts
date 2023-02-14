@@ -56,8 +56,24 @@ const useApi = () => {
     [apiUrl, dispatch]
   );
 
-  const addToDo = (event: any, todo: ToDo) => {
+  const addToDo = async (event: any, todo: ToDo) => {
     event.preventDefault();
+
+    try {
+      await fetch(apiUrl, {
+        method: "POST",
+        body: JSON.stringify({
+          id: todo.id,
+          name: todo.name,
+          isDone: todo.isDone,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+    } catch (error) {
+      return (error as Error).message;
+    }
 
     dispatch(addToDoActionCreator(todo));
   };
