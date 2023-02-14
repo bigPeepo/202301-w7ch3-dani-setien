@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useApi from "../../hooks/useApi";
+import FormStyled from "./FormStyled";
 
 const Form = (): JSX.Element => {
   const { addToDo } = useApi();
@@ -23,13 +24,13 @@ const Form = (): JSX.Element => {
   };
 
   return (
-    <form className="form" autoComplete="off" onSubmit={handleSubmit}>
+    <FormStyled className="form" autoComplete="off" onSubmit={handleSubmit}>
       <label htmlFor="to-do">New task: </label>
       <input type="text" id="name" onChange={handleChange} required></input>
       <button type="submit" className="form__button">
         add task
       </button>
-    </form>
+    </FormStyled>
   );
 };
 
