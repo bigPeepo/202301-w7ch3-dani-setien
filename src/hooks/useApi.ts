@@ -21,8 +21,22 @@ const useApi = () => {
     } catch (error) {}
   }, [apiUrl, dispatch]);
 
-  const toggleIsDone = (todo: ToDo) => {
-    dispatch(toggleIsDoneActionCreator(todo));
+  const toggleIsDone = async (todo: ToDo) => {
+    try {
+      await fetch(`${apiUrl}/${todo.id}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+          isDone: !todo.isDone,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+
+      dispatch(toggleIsDoneActionCreator(todo));
+    } catch (error) {
+      return (error as Error).message;
+    }
   };
 
   return { loadToDos, toggleIsDone };
