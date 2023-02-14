@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { ToDo, ToDos } from "../data/types";
 import {
+  deleteToDoActionCreator,
   loaToDosActionCreator,
   toggleIsDoneActionCreator,
 } from "../store/features/toDos/toDosSlice";
@@ -39,7 +40,19 @@ const useApi = () => {
     }
   };
 
-  return { loadToDos, toggleIsDone };
+  const deleteToDo = async (id: number) => {
+    try {
+      await fetch(`${apiUrl}/${id}`, {
+        method: "DELETE",
+      });
+
+      dispatch(deleteToDoActionCreator(id));
+    } catch (error) {
+      return (error as Error).message;
+    }
+  };
+
+  return { loadToDos, toggleIsDone, deleteToDo };
 };
 
 export default useApi;

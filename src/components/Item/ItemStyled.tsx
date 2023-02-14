@@ -13,9 +13,10 @@ const ItemStyled = styled.li`
     &__name {
       width: 80vw;
       text-align: left;
-      padding-left: 2rem;
+      padding-left: 3rem;
     }
-    &__is-done {
+    &__is-done,
+    &__delete {
       padding-right: 3rem;
       font-size: 32px;
     }

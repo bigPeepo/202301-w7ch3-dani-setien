@@ -16,6 +16,9 @@ const toDosSlice = createSlice({
           : item.isDone
       );
     },
+    deleteToDo: (state: ToDos, action: PayloadAction<number>) => {
+      state.filter((item) => item.id !== action.payload);
+    },
   },
 });
 
@@ -24,4 +27,5 @@ export default toDosSlice;
 export const {
   loadToDos: loaToDosActionCreator,
   toggleIsDone: toggleIsDoneActionCreator,
+  deleteToDo: deleteToDoActionCreator,
 } = toDosSlice.actions;

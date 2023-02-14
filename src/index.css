@@ -27,3 +27,11 @@ a {
   color: inherit;
   text-decoration: inherit;
 }
+
+i {
+  font-style: inherit;
+}
+
+h1 {
+  padding: 1rem;
+}
