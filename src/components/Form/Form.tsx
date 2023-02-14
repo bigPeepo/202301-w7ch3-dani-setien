@@ -20,13 +20,21 @@ const Form = (): JSX.Element => {
       isDone: false,
     };
 
+    setFormValue("");
     addToDo(event, newTask);
   };
 
   return (
     <FormStyled className="form" autoComplete="off" onSubmit={handleSubmit}>
       <label htmlFor="to-do">New task: </label>
-      <input type="text" id="name" onChange={handleChange} required></input>
+      <input
+        type="text"
+        id="name"
+        onChange={handleChange}
+        value={formValue}
+        placeholder="Set a new task"
+        required
+      ></input>
       <button type="submit" className="form__button">
         add task
       </button>
