@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { ToDo, ToDos } from "../data/types";
+import { Ingredient, Ingredients } from "../store/types";
 import {
   addToDoActionCreator,
   loaToDosActionCreator,
@@ -13,22 +13,22 @@ const useApi = () => {
     "https://202301-w6ch1-dani-setien-backend-second.onrender.com/todoes";
   const dispatch = useAppDispatch();
 
-  const loadToDos = useCallback(async () => {
+  const getIngredients = useCallback(async () => {
     try {
       const response = await fetch(apiUrl);
 
-      const toDosApi = (await response.json()) as ToDos;
+      const toDosApi = (await response.json()) as Ingredients;
 
       dispatch(loaToDosActionCreator(toDosApi));
     } catch (error) {}
   }, [apiUrl, dispatch]);
 
-  const toggleIsDone = async (todo: ToDo) => {
+  const toggleIsPerishable = async (todo: Ingredient) => {
     try {
       await fetch(`${apiUrl}/${todo.id}`, {
         method: "PATCH",
         body: JSON.stringify({
-          isDone: !todo.isDone,
+          isDone: !todo.isPerishable,
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -41,7 +41,7 @@ const useApi = () => {
     }
   };
 
-  const deleteToDos = useCallback(
+  const deleteIngredient = useCallback(
     async (id: number) => {
       try {
         await fetch(`${apiUrl}/${id}`, {
@@ -56,16 +56,16 @@ const useApi = () => {
     [apiUrl, dispatch]
   );
 
-  const addToDo = async (event: any, todo: ToDo) => {
+  const addIngredient = async (event: any, todo: Ingredient) => {
     event.preventDefault();
 
     try {
       await fetch(apiUrl, {
         method: "POST",
         body: JSON.stringify({
-          id: todo.id,
+          id: Date.now(),
           name: todo.name,
-          isDone: todo.isDone,
+          isDone: todo.isPerishable,
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -78,7 +78,12 @@ const useApi = () => {
     dispatch(addToDoActionCreator(todo));
   };
 
-  return { loadToDos, toggleIsDone, deleteToDos, addToDo };
+  return {
+    getIngredients,
+    toggleIsPerishable,
+    deleteIngredient,
+    addIngredient,
+  };
 };
 
 export default useApi;

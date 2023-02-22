@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ToDo, ToDos } from "../../../data/types";
+import { Ingredient, Ingredients } from "../../types";
 
-export const initialState = [] as ToDos;
+export const initialState = [] as Ingredients;
 
 const toDosSlice = createSlice({
   name: "toDos",
-  initialState: [] as ToDos,
+  initialState: [] as Ingredients,
   reducers: {
-    loadToDos: (currentItems, action: PayloadAction<ToDos>) =>
+    loadToDos: (currentItems, action: PayloadAction<Ingredients>) =>
       (currentItems = [...action.payload]),
 
     removeToDo: (currentItems, action: PayloadAction<number>) =>
@@ -18,15 +18,15 @@ const toDosSlice = createSlice({
           id: position,
         })),
 
-    toggleIsDone: (currentItems, action: PayloadAction<ToDo>) => {
+    toggleIsDone: (currentItems, action: PayloadAction<Ingredient>) => {
       currentItems.map((item) =>
         item.id === action.payload.id
-          ? (item.isDone = !item.isDone)
-          : item.isDone
+          ? (item.isPerishable = !item.isPerishable)
+          : item.isPerishable
       );
     },
 
-    addToDo: (currentItems, action: PayloadAction<ToDo>) => [
+    addToDo: (currentItems, action: PayloadAction<Ingredient>) => [
       ...currentItems,
       action.payload,
     ],

@@ -3,7 +3,7 @@ import useApi from "../../hooks/useApi";
 import FormStyled from "./FormStyled";
 
 const Form = (): JSX.Element => {
-  const { addToDo } = useApi();
+  const { addIngredient } = useApi();
 
   const [formValue, setFormValue] = useState("");
 
@@ -17,26 +17,26 @@ const Form = (): JSX.Element => {
     const newTask = {
       id: Math.floor(Math.random() * 10000),
       name: formValue,
-      isDone: false,
+      isPerishable: false,
     };
 
     setFormValue("");
-    addToDo(event, newTask);
+    addIngredient(event, newTask);
   };
 
   return (
     <FormStyled className="form" autoComplete="off" onSubmit={handleSubmit}>
-      <label htmlFor="to-do">New task: </label>
+      <label htmlFor="to-do">New ingredient: </label>
       <input
         type="text"
         id="name"
         onChange={handleChange}
         value={formValue}
-        placeholder="Set a new task"
+        placeholder="ingredient"
         required
       ></input>
       <button type="submit" className="form__button">
-        add task
+        Add to pantry
       </button>
     </FormStyled>
   );

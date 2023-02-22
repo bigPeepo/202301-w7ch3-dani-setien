@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import { recipeSlice } from "../hooks/chat";
 import toDosSlice from "./features/toDos/toDosSlice";
 
 export const store = configureStore({
   reducer: {
     toDos: toDosSlice.reducer,
+    recipe: recipeSlice.reducer,
   },
 });
 

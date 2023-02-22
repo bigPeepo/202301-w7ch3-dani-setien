@@ -4,19 +4,17 @@ import { useAppSelector } from "../../store/hooks";
 import Item from "../Item/Item";
 
 const ItemList = (): JSX.Element => {
-  const { loadToDos } = useApi();
+  const { getIngredients } = useApi();
 
-  const list = useAppSelector((state) => {
-    return state.toDos;
-  });
+  const list = useAppSelector((state) => state.toDos);
 
   useEffect(() => {
-    loadToDos();
-  }, [loadToDos]);
+    getIngredients();
+  }, [getIngredients]);
 
   return (
     <>
-      <h1>To do list</h1>
+      <h1>Pantry</h1>
       <ul className="to-do-list">
         {list.map((item, position) => (
           <Item
