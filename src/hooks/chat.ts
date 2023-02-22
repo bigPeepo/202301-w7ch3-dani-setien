@@ -73,7 +73,7 @@ export const useOpenAI = () => {
         body: JSON.stringify(requestBody),
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer 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`,
+          Authorization: `Bearer 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`,
         },
       });
 
