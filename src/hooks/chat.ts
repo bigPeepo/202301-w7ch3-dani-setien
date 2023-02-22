@@ -68,12 +68,12 @@ export const useOpenAI = () => {
         max_tokens: 100,
       };
 
-      const response = await fetch("https://api.openai.com/v1/completions", {
+      const response = await fetch(`https://api.openai.com/v1/completions`, {
         method: "POST",
         body: JSON.stringify(requestBody),
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+          Authorization: `Bearer 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`,
         },
       });
 
